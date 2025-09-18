@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EX - Dashboard della città</title>
+  </head>
+  <body>
+    <h1><b>EX - Dashboard della città</b></h1>
+    <h2><b>Consegna</b></h2>
+    <ul>
+      In questo esercizio, utilizzerai
+      <b>Promise.all()</b>
+      per creare la funzione
+      <b>getDashboardData(query),</b>
+      che accetta una città come input e recupera simultaneamente:
+      <br />
+      <br />
+      <li>
+        Nome completo della città e paese da
+        <b> /destinations?search=[query]</b>
+        (result.name, result.country, nelle nuove proprietà city e country).
+      </li>
+      <br />
+      <li>
+        Il meteo attuale da <b>/weathers?search={query}</b> (result.temperature
+        e result.weather_description nella nuove proprietà temperature e
+        weather).
+      </li>
+      <br />
+      <li>
+        Il nome della aeroporto principale da <b>/airports?search={query}</b>
+        (result.name nella nuova proprietà airport).
+      </li>
+      <br />
+      Utilizzerai
+      <b>Promise.all()</b>
+      per eseguire queste richieste in parallelo e poi restituirai un oggetto
+      con i dati aggregati.
+      <h2>
+        <b
+          >Attenzione: le chiamate sono delle ricerche e ritornano una array
+          ciascuna, di cui devi prendere il primo risultato (il primo
+          elemento).</b
+        >
+      </h2>
+      <h3><b>Note del docente</b></h3>
+      Scrivi la funzione
+      <b>getDashboardData(query),</b>
+      che deve:
+      <br />
+      <br />
+      <li>Essere asincrona (<b>async</b>).</li>
+      <br />
+      <li>
+        Utilizzare <b>Promise.all()</b> per eseguire più richieste in parallelo.
+      </li>
+      <br />
+      <li>
+        Restituire una <b>Promise</b> che risolve un oggetto contenente i dati
+        aggregati.
+      </li>
+      <br />
+      <li>Stampare i dati in console in un messaggio ben formattato.</li>
+      <br />
+      <li>Testa la funzione con la query "london"</li>
+    </ul>
+    <script src="snack-promise-all.js"></script>
+  </body>
+</html>
