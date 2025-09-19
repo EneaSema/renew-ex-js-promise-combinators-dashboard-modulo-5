@@ -132,17 +132,17 @@
 // }
 
 // async function getDashboardData(query) {
-//   const destinations = await fetchJson(
+//   const destinations =  fetchJson(
 //     `http://localhost:3333/destinations?search=${[query]}`
 //   );
 //   console.log(destinations);
 
-//   const weathers = await fetchJson(
+//   const weathers =  fetchJson(
 //     `http://localhost:3333/weathers?search=${query}`
 //   );
 //   console.log(weathers);
 
-//   const airports = await fetchJson(
+//   const airports =  fetchJson(
 //     `http://localhost:3333/airports?search=${query}`
 //   );
 //   console.log(airports);
@@ -207,35 +207,29 @@ async function fetchJson(url) {
 
 async function getDashboardData(query) {
   try {
-    const destinations = await fetchJson(
-      `http://localhost:3333/mdestinations?search=${[query]}`
-    );
-    console.log(destinations);
-    const weathers = await fetchJson(
+    const destinations = fetchJson(`https://www.meteofittizio.it}`);
+    console.log("Destinazione", destinations);
+
+    const weathers = fetchJson(
       `http://localhost:3333/weathers?search=${query}`
     );
-    console.log(weathers);
+    console.log("Meteo", weathers);
 
-    const airports = await fetchJson(
+    const airports = fetchJson(
       `http://localhost:3333/airports?search=${query}`
     );
-    console.log(airports);
+    console.log("Aereoporto", airports);
 
     const promises = [destinations, weathers, airports];
     console.log("Le promesse", promises);
 
     const [destinationsResult, weathersResult, airportsResult] =
       await Promise.allSettled(promises);
-    console.log("I risultati", promises);
-
-    console.log(
-      "Risultati:",
+    console.log("Risultati:", [
       destinationsResult,
-
       weathersResult,
-
-      airportsResult
-    );
+      airportsResult,
+    ]);
 
     const data = {};
 
@@ -244,7 +238,10 @@ async function getDashboardData(query) {
       data.city = destination ? destination.name : null;
       data.country = destination ? destination.country : null;
     } else {
-      console.error("Presente errore in destinazioni:", error.reason);
+      console.error(
+        "Presente errore in destinazione:",
+        destinationsResult.reason
+      );
       data.city = null;
       data.country = null;
     }
@@ -253,7 +250,7 @@ async function getDashboardData(query) {
       data.temperature = weather ? weather.temperature : null;
       data.weather = weather ? weather.weather_description : null;
     } else {
-      console.error("Presente errore in meteo:", error.reason);
+      console.error("Presente errore in meteo:", weathersResult.reason);
       data.temperature = null;
       data.weather = null;
     }
@@ -261,14 +258,14 @@ async function getDashboardData(query) {
       const airport = airportsResult.value[0];
       data.airport = airport ? airport.name : null;
     } else {
-      console.error("Presente errore in aereoporti:", error.reason);
+      console.error("Presente errore in aereoporti:", airportsResult.reason);
       data.airport = null;
     }
     console.log("Il dato finale è ", data);
 
     return data;
   } catch (error) {
-    throw new Error("Errore!", error.reason);
+    throw new Error("Errore!", error.messagge);
   }
 }
 
