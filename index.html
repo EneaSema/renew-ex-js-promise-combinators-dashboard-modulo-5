@@ -8,14 +8,16 @@
   <body>
     <h1><b>EX - Dashboard della città</b></h1>
     <h2><b>Consegna</b></h2>
-    <ul>
+
+    <p>
       In questo esercizio, utilizzerai
       <b>Promise.all()</b>
       per creare la funzione
       <b>getDashboardData(query),</b>
       che accetta una città come input e recupera simultaneamente:
-      <br />
-      <br />
+    </p>
+
+    <ul>
       <li>
         Nome completo della città e paese da
         <b> /destinations?search=[query]</b>
@@ -33,23 +35,29 @@
         (result.name nella nuova proprietà airport).
       </li>
       <br />
+    </ul>
+    <p>
       Utilizzerai
       <b>Promise.all()</b>
       per eseguire queste richieste in parallelo e poi restituirai un oggetto
       con i dati aggregati.
-      <h2>
-        <b
-          >Attenzione: le chiamate sono delle ricerche e ritornano una array
-          ciascuna, di cui devi prendere il primo risultato (il primo
-          elemento).</b
-        >
-      </h2>
-      <h3><b>Note del docente</b></h3>
+    </p>
+    <h2>
+      <b
+        >Attenzione: le chiamate sono delle ricerche e ritornano una array
+        ciascuna, di cui devi prendere il primo risultato (il primo
+        elemento).</b
+      >
+    </h2>
+    <h3><b>Note del docente</b></h3>
+    <p>
       Scrivi la funzione
       <b>getDashboardData(query),</b>
       che deve:
       <br />
       <br />
+    </p>
+    <ul>
       <li>Essere asincrona (<b>async</b>).</li>
       <br />
       <li>
@@ -64,48 +72,67 @@
       <li>Stampare i dati in console in un messaggio ben formattato.</li>
       <br />
       <li>Testa la funzione con la query "london"</li>
-      <h4><b>Esempio di utilizzo </b></h4>
+    </ul>
+    <h4><b>Esempio di utilizzo </b></h4>
+    <p>
+      getDashboardData('london') <br />
+      .then(data =<!-- ricorddarsi che è => -->
+      <br />{ <br />
+      console.log('Dasboard data:', data);<br />
+      console.log( `${data.city} is in ${data.country}.\n` + <br />
+      `Today there are ${data.temperature} degrees and the weather is
+      ${data.weather}.\n`+ <br />
+      `The main airport is ${data.airport}.\n` <br />
+      ); <br />
+      }) <br />
+      .catch(error =<!-- ricorddarsi che è => -->
+      console.error(error));
+    </p>
 
-      <p>
-        getDashboardData('london') <br />
-        .then(data =<!-- ricorddarsi che è => -->
-        <br />{ <br />
-        console.log('Dasboard data:', data);<br />
-        console.log( `${data.city} is in ${data.country}.\n` + <br />
-        `Today there are ${data.temperature} degrees and the weather is
-        ${data.weather}.\n`+ <br />
-        `The main airport is ${data.airport}.\n` <br />
-        ); <br />
-        }) <br />
-        .catch(error =<!-- ricorddarsi che è => -->
-        console.error(error));
-      </p>
-      <h4><b>Esempio di output atteso</b></h4>
+    <h4><b>Esempio di output atteso</b></h4>
+    <p>
+      // Risposta API <br />
+      { <br />
+      city: "London", <br />
+      country: "United Kingdom", <br />
+      temperature: 18, <br />
+      weather: "Partly cloudy", <br />
+      airport: "London Heathrow Airport" <br />
+      } <br />
 
-      <h2><b>🎯 Bonus 1 - Risultato vuoto</b></h2>
-      <b>Se l’array di ricerca è vuoto,</b>
+      // Output in console London is in United Kingdom. <br />
+      Today there are 18 degrees and the weather is Partly cloudy. <br />
+      The main airport is London Heathrow Airport.
+    </p>
+    <br />
+
+    <h2><b>🎯 Bonus 1 - Risultato vuoto</b></h2>
+    <p>
+      <b>Se la array di ricerca è vuoto,</b>
       invece di far fallire l'intera funzione, semplicemente i dati relativi a
       quella chiamata verranno settati a null e la frase relativa non viene
       stampata. Testa la funzione con la query “vienna” (non trova il meteo).
+    </p>
 
-      <p>
-        Risposta API <br />
-        {
-        <br />
-        city: "Vienna", <br />
-        country: "Austria", <br />
-        temperature: null, <br />
-        weather: null, <br />
-        airport: "Vienna International Airport"<br />
-        } <br />
-        <br />
+    <p>
+      Risposta API <br />
+      {
+      <br />
+      city: "Vienna", <br />
+      country: "Austria", <br />
+      temperature: null, <br />
+      weather: null, <br />
+      airport: "Vienna International Airport"<br />
+      } <br />
+      <br />
 
-        Output in console <br />
+      Output in console <br />
 
-        Vienna is in Austria. <br />
-        The main airport is Vienna International Airport.
-      </p>
-      <h2><b>🎯 Bonus 2 - Chiamate fallite</b></h2>
+      Vienna is in Austria. <br />
+      The main airport is Vienna International Airport.
+    </p>
+    <h2><b>🎯 Bonus 2 - Chiamate fallite</b></h2>
+    <p>
       Attualmente, se una delle chiamate fallisce, **Promise.all()** rigetta
       l'intera operazione.
       <br />
@@ -113,6 +140,8 @@
       modo che:
       <br />
       <br />
+    </p>
+    <ul>
       <li>
         <b>Se una chiamata fallisce,</b> i dati relativi a quella chiamata
         verranno settati a null.
